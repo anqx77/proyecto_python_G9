@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<br>
+<center>
+  <h1>Postulaciones CNE</h1>
+  <h3>Santo Domingo 2024</h3>
+  <h3>Prueba de Cambios GitHub</h3>
+  
+</center>
+{%for p in publicaciones %} <br>
+<div class="container-fluid col-sm-8 mb-6 mb-sm-2">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{p.titulo}}</h5>
+        <p class="card-text">{{p.descripcion}}</p>
+        <p class="card-text">Contacto: {{p.email}}</p>
+        <a href="{% url 'postular' p.id %}" class="btn btn-primary">Postular</a>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- <div class="card">
+    <h5 class="card-header">{{p.titulo}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Contacto: {{p.email}}</h5>
+      <p class="card-text">{{p.descripcion}}</p>
+      <a href="{% url 'eliminar' p.id %}" class="btn btn-danger">Eliminar</a>
+      <a href="{% url 'actualizar' p.id %}" class="btn btn-success">Actualizar</a>
+    </div>
+  </div> -->
+
+  {%endfor%}
+  {% endblock %}
