@@ -7,7 +7,7 @@
   <h1>Empleos CNE</h1>
   <h3>Santo Domingo 2024</h3>
 </center>
-{%for p in empleo %} <br>
+{%for p in empleos %} <br>
 <div class="container-fluid col-sm-8 mb-6 mb-sm-2">
     <div class="card">
       <div class="card-body">
@@ -16,9 +16,9 @@
         <p class="card-text">Area: {{p.area_empleo}}</p>
         <p class="card-text">Modalidad: {{p.modalidad_empleo}}</p>
         <p class="card-text">Tiempo de Trabajo: {{p.tiempo_empleo}} meses</p>
-        <p class="card-text">ciudad: {{p.id_ciudad_fk }}</p>
-        <a href="{% url 'eliminar' e.id %}" class="btn btn-danger">Eliminar</a>
-      <a href="{% url 'actualizar' e.id %}" class="btn btn-success">Actualizar</a>
+        <p class="card-text">Ciudad: {{p.id_ciudad_fk }}</p>
+        <a href="{% url 'eliminar' p.id %}" class="btn btn-danger">Eliminar</a>
+      <a href="{% url 'actualizar' p.id %}" class="btn btn-success">Actualizar</a>
       </div>
     </div>
   </div>

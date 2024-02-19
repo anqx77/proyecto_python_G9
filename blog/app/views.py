@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 from .models import Publicacion, Empleo
 from  .forms import PublicacionForm, EmpleoForm
 
 def actualizar(request, publicacion_id): 
-    publicacion = Publicacion.objects.get(pk = publicacion_id)
-    form = PublicacionForm(request.POST or None, instance = publicacion)
+    publicacion = Empleo.objects.get(pk = publicacion_id)
+    form = EmpleoForm(request.POST or None, instance = publicacion)
     if form.is_valid(): 
         form.save()
         messages.success(request, 'Publicación Actualizada')
@@ -14,7 +14,7 @@ def actualizar(request, publicacion_id):
     return render(request, 'app/actualizar.html', {'publicacion':publicacion, 'form': form})
     
 def eliminar(request, publicacion_id):
-    publicacion = Publicacion.objects.get(pk = publicacion_id)
+    publicacion = Empleo.objects.get(pk = publicacion_id)
     publicacion.delete()
     messages.success(request, 'Publicación Eliminada')
     return redirect(home)  
@@ -34,13 +34,28 @@ def home(request):
     return render(request, 'app/home.html', {'empleos': empleos})
 
 def index(request):
-    publicaciones = Publicacion.objects.all()
-    return render(request, 'app/index.html', {'publicaciones': publicaciones})
+    empleos = Empleo.objects.all()
+    return render(request, 'app/index.html', {'empleos': empleos})
 
-def postular(request): 
-    if request.POST: 
-        form = PublicacionForm(request.POST)
-        if form.is_valid():
-            form.save()
-        messages.success(request, 'Postulación Exitosa')
-        return redirect(index)  
+def postular(request, empleo_id, postulante_id): 
+    # publicacion = Empleo.objects.get(pk = publicacion_id)
+    # form = EmpleoForm(request.POST or None, instance = publicacion)
+    # if request.POST: 
+    #     form = EmpleoForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #     messages.success(request, 'Postulación Exitosa')
+        return redirect()  
+    
+def descripcion(request, empleo_id): 
+    # Query del perro, un perro con el codigo
+    empleo = Empleo.objects.get(pk = empleo_id)
+    
+    # creo un diccionario con el objeto
+    contenido = {
+        'empleo' : empleo
+    }
+    template = "app/descripcion.html"
+    return render(request, template, contenido)
+
+

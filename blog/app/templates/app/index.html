@@ -2,21 +2,37 @@
 
 {% block content %}
 
+
+<style>
+
+a:link, a:visited,  a:hover, a:active
+{
+    color: #000000;
+    text-decoration: none;
+}
+.card:hover{
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+}
+
+</style>
 <br>
 <center>
-  <h1>Postulaciones CNE</h1>
+  <h1>Plazas Laborales CNE</h1>
   <h3>Santo Domingo 2024</h3>
   <h5>Postula a tu trabajo ahora!</h3>
   
 </center>
-{%for p in publicaciones %} <br>
+{%for p in empleos %} <br>
 <div class="container-fluid col-sm-8 mb-6 mb-sm-2">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{p.titulo}}</h5>
-        <p class="card-text">{{p.descripcion}}</p>
-        <p class="card-text">Contacto: {{p.email}}</p>
-        <a href="{% url 'postular' p.id %}" class="btn btn-primary">Postular</a>
+      <a href="{% url 'descripcion' p.id %}">
+      <div class="card-body btn" style="text-align:left;">
+        <h5 class="card-title">{{p.nombre_empleo}}</h5>
+        <p class="card-text">Ciudad: {{p.id_ciudad_fk }}</p>
+        <p class="card-text">Area: {{p.area_empleo}}</p>
+        <p class="card-text">Modalidad: {{p.modalidad_empleo}}</p>
+        
+      </a>
       </div>
     </div>
   </div>
