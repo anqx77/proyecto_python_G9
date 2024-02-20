@@ -21,7 +21,8 @@ class Postulante(models.Model):
     email_postulante = models.EmailField(max_length=150,blank=False,null=False)
     telefono_postulante = models.IntegerField(blank=False,null=False, validators=[MaxValueValidator(9999999999)])
     ciudad_postulante = models.CharField(max_length=144,blank=False, null=False)
-
+    # Falta numero de cedula, nacionalidad
+    
     def __str__(self) -> str:
             return f'{self.pk} - {self.nombre_postulante}'
 

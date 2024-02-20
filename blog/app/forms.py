@@ -2,7 +2,7 @@ from django import forms
 from django.utils import timezone
 from django.forms import ModelForm
 
-from .models import Empleo, Publicacion
+from .models import Empleo, Publicacion, Postulante, Detallepostulante
 
 MODALIDAD_EMPLEO_CHOICES = ["Activado", "Desactivado", "Pendiente"]
 
@@ -45,4 +45,28 @@ class PublicacionForm(ModelForm):
             'email': forms.EmailInput(attrs = {'class': 'form-control'}),
         }
         
-       
+
+class DatosPersonales(ModelForm):
+    class Meta: 
+        model = Postulante
+        fields = '__all__'
+        labels = { 
+            'nombre_postulante': 'Nombres',
+            'apellito_postulante': 'Apellidos', 
+            'email_postulante': 'Email', 
+            'telefono_postulante': 'Teléfono', 
+            'genero_postulante': 'Género', 
+            'edad_postulante': 'Edad', 
+            'ciudad_postulante': 'Ciudad', 
+            'direccion_postulante': 'Dirección'
+        }
+        widgets = { 
+             'nombre_postulante': forms.TextInput(attrs = {'class': 'form-control'}),
+            'apellito_postulante': forms.TextInput(attrs = {'class': 'form-control'}),
+            'email_postulante': forms.EmailInput(attrs = {'class': 'form-control'}),
+            'telefono_postulante': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'genero_postulante': forms.Select(),
+            'edad_postulante':  forms.NumberInput(attrs = {'class': 'form-control'}), 
+            'ciudad_postulante': forms.TextInput(attrs = {'class': 'form-control'}),
+            'direccion_postulante': forms.TextInput(attrs = {'class': 'form-control'}),
+        }
