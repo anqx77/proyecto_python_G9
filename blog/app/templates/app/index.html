@@ -28,8 +28,8 @@ a:link, a:visited,  a:hover, a:active
       <a href="{% url 'descripcion' p.id %}">
       <div class="card-body btn" style="text-align:left;">
         <h5 class="card-title">{{p.nombre_empleo}}</h5>
-        <p class="card-text">Ciudad: {{p.id_ciudad_fk }}</p>
-        <p class="card-text">Area: {{p.area_empleo}}</p>
+        <p class="card-text"><i class="fa-light fa-location-dot"></i> {{p.id_ciudad_fk }}</p>
+        <p class="card-text"><i class="fa-light fa-briefcase"></i> {{p.area_empleo}}</p>
         <p class="card-text">Modalidad: {{p.modalidad_empleo}}</p>
         
       </a>
