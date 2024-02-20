@@ -1,5 +1,5 @@
 
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -10,6 +10,6 @@ urlpatterns = [
     path('actualizar/<publicacion_id>', views.actualizar, name ="actualizar"), 
     path('postular', views.postular, name = 'postular'),
     path('descripcion/<empleo_id>', views.descripcion, name ="descripcion"), 
-    
+    path('accounts/', include('allauth.urls')),
    
 ]

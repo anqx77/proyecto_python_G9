@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Publicacion, Empleo
 from  .forms import PublicacionForm, EmpleoForm
@@ -18,7 +19,8 @@ def eliminar(request, publicacion_id):
     publicacion.delete()
     messages.success(request, 'Publicación Eliminada')
     return redirect(home)  
-    
+
+@login_required    
 def agregar(request): 
     if request.POST: 
         form = EmpleoForm(request.POST)

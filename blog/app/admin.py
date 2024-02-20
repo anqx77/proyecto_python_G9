@@ -12,6 +12,7 @@ class PublicacionAdmin(admin.ModelAdmin):
 class PostulanteAdmin(admin.ModelAdmin):
     list_display = (
         'id',
+        'user',
         'nombre_postulante',
         'apellido_postulante',
         'genero_postulante',
@@ -21,6 +22,7 @@ class PostulanteAdmin(admin.ModelAdmin):
         'telefono_postulante',
         'ciudad_postulante',
     )
+    list_filter = ('user',)
 
 
 @admin.register(Detallepostulante)

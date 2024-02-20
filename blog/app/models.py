@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator
+from django.contrib.auth.models import User
 
 class Publicacion(models.Model):
     titulo      = models.CharField(max_length=50)
@@ -13,6 +14,7 @@ class Publicacion(models.Model):
         verbose_name_plural = 'Publicaciones'
 
 class Postulante(models.Model):
+    user = models.OneToOneField(User, related_name='perfil', on_delete=models.CASCADE, null=True)
     nombre_postulante = models.CharField(max_length=144)
     apellido_postulante = models.CharField(max_length=144,blank=False,null=False)
     genero_postulante = models.CharField(max_length=144,blank=False,null=False)
