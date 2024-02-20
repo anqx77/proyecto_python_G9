@@ -9,6 +9,8 @@ class Publicacion(models.Model):
     
     def __str__(self): 
         return self.titulo
+    class Meta: 
+        verbose_name_plural = 'Publicaciones'
 
 class Postulante(models.Model):
     nombre_postulante = models.CharField(max_length=144)
@@ -20,8 +22,8 @@ class Postulante(models.Model):
     telefono_postulante = models.IntegerField(blank=False,null=False, validators=[MaxValueValidator(9999999999)])
     ciudad_postulante = models.CharField(max_length=144,blank=False, null=False)
 
-def __str__(self) -> str:
-        return f'{self.pk} - {self.nombre_postulante}'
+    def __str__(self) -> str:
+            return f'{self.pk} - {self.nombre_postulante}'
 
 class Detallepostulante(models.Model):
     experiencia_laboral = models.TextField(blank=True,null=True)
@@ -30,8 +32,8 @@ class Detallepostulante(models.Model):
     idioma_laboral = models.CharField(max_length=255,blank=True,null=True)
     id_postulante_fk = models.ForeignKey(Postulante, related_name='postulante', on_delete=models.SET_NULL,null=True)
 
-def __str__(self)->str:
-    return f'{self.experiencia_laboral}'
+    def __str__(self)->str:
+        return f'{self.experiencia_laboral}'
 
 
 class Ciudad(models.Model):
@@ -39,8 +41,10 @@ class Ciudad(models.Model):
     telefono_ciudad = models.IntegerField(blank=False,null=False, validators=[MaxValueValidator(9999999999)])
     email_ciudad = models.EmailField(max_length=150,blank=False,null=False)
 
-def __str__(self)->str:
-    return f'{self.nombre_ciudad}'
+    def __str__(self)->str:
+        return f'{self.nombre_ciudad}'
+    class Meta: 
+        verbose_name_plural = 'Ciudades'
 
 
 class Empleo(models.Model):
@@ -52,8 +56,8 @@ class Empleo(models.Model):
     tiempo_empleo = models.IntegerField(blank=False,null=False, validators=[MaxValueValidator(9999999999)])
     id_ciudad_fk = models.ForeignKey(Ciudad, related_name='ciudad', on_delete=models.SET_NULL,null=True)
     
-def __str__(self)->str:
-    return f'{self.nombre_empleo}'
+    def __str__(self)->str:
+        return f'{self.nombre_empleo}'
 
 
 class Postulados(models.Model):
@@ -62,5 +66,8 @@ class Postulados(models.Model):
     id_postulados_fk = models.ForeignKey(Postulante, related_name='postulado', on_delete=models.SET_NULL,null=True)
     id_empleo_fk = models.ForeignKey(Empleo, related_name='empleo', on_delete=models.SET_NULL,null=True)
 
-def __str__(self)-> str:
-    return f'{self.estado_postulado}'
+    def __str__(self)-> str:
+        return f'{self.estado_postulado}'
+
+    class Meta: 
+        verbose_name_plural = 'Postulados'
